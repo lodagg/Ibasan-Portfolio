@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Leomar E. Ibasan — Data Scientist & Software Engineer. Portfolio showcasing projects, skills, and contact information." />
+  <title>Leomar E. Ibasan | Portfolio</title>
+
+  <!-- favicon placeholder: replace with your favicon file -->
+  <link rel="icon" href="favicon.ico" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ===== Basic / Layout ===== */
+    :root{
+      --navy:#000c3a;
+      --accent:#f1c40f;
+      --muted:#f4f6fb;
+      --text:#032046;
+      --card:#ffffff;
+      --radius:12px;
+      --container:1100px; /* Keep this as a max-width */
+      --transition:200ms ease;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+   body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #000c3a 0%, #032046 50%, #0a1f40 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated wave overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 200%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='1440' height='900' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23f1c40f' fill-opacity='0.08' d='M0,300 Q360,450 720,300 T1440,300 L1440,900 L0,900 Z'/%3E%3Cpath fill='%23ffffff' fill-opacity='0.02' d='M0,500 Q360,650 720,500 T1440,500 L1440,900 L0,900 Z'/%3E%3C/svg%3E");
+  background-size: cover;
+  animation: waveMove 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* Make all key sections readable on dark background */
+.hero,
+#about,
+#skills,
+#education,
+#contact,
+#projects { /* Added #projects here to apply the box styling */
+  background: rgba(255, 255, 255, 0.08); /* soft light glass */
+  backdrop-filter: blur(8px); /* smooth glass blur */
+  border-radius: var(--radius);
+  padding: 1.5rem; /* Base padding for sections */
+  color: #f5f7fa; /* light text */
+}
+#contact a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#contact a:hover {
+  color: var(--accent); /* gold hover effect */
+  text-decoration: underline;
+}
+
+/* Bright white headings */
+.hero h1,
+#about h2,
+#skills h2,
+#education h2,
+#contact h2,
+#projects h2 { /* Added #projects h2 here to make its heading white */
+  color: #ffffff;
+}
+
+/* Lead text softer but readable */
+.hero p,
+#about p,
+#skills p,
+#education p,
+#contact p {
+  color: #e5eaf0;
+}
+
+/* Skill cards contrast */
+.skill-card {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+.skill-card strong {
+  color: var(--accent);
+}
+
+/* Project cards readable */
+.project {
+  background: rgba(0, 12, 58, 0.6); /* navy glass */
+  backdrop-filter: blur(8px);
+  color: #23549e;
+  border: 1px solid rgba(241, 196, 15, 0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+.project-desc-black {
+  color: #000000 !important;
+}
+
+
+.project h3 {
+  color: var(--accent);
+}
+
+.project p {
+  color: #dfe6f1;
+}
+
+.project:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 26px rgba(241, 196, 15, 0.4);
+}
+
+
+    /* ===== Header / Navbar ===== */
+    header{position:sticky; top:0; z-index:60; background:var(--navy); box-shadow:0 6px 18px rgba(2,6,23,0.12);}
+    .nav-container{
+      max-width:var(--container); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0.65rem 1rem;
+    }
+    .brand { color:#fff; font-weight:700; letter-spacing:0.2px; display:flex; gap:10px; align-items:center; text-decoration:none;}
+    .brand img{height:34px; width:34px; border-radius:6px; object-fit:cover; border:2px solid var(--accent);}
+
+    nav ul { list-style:none; margin:0; padding:0; display:flex; gap:1rem; align-items:center; }
+    nav a { color:#fff; text-decoration:none; font-weight:600; padding:8px 10px; border-radius:8px; transition:all var(--transition); }
+    nav a:hover, nav a:focus { background:rgba(255,255,255,0.06); color:var(--accent); outline:none; }
+    nav a.active { background:rgba(241,196,15,0.12); color:var(--accent); }
+
+    /* hamburger (mobile) */
+    .hamburger { display:none; background:none; border:0; color:#fff; font-size:20px; cursor:pointer; }
+    .nav-right{display:flex; gap:1rem; align-items:center;}
+
+    /* ===== Main content ===== */
+    main{
+      max-width:var(--container);
+      margin:2rem auto;
+      padding: 1rem 2rem; /* Increased horizontal padding */
+    }
+
+    /* Brighter hero panel for better visibility */
+.hero {
+  background: rgba(255, 255, 255, 0.15); /* brighter glass */
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  color: #ffffff;
+  
+}
+/* Hero lead text color fix */
+.hero p.lead {
+  color: #ffffff !important;
+}
+
+/* Hero heading and text */
+.hero h1 {
+  color: #ffffff;
+}
+.hero p {
+  color: #f1f3f7;
+}
+
+/* Buttons inside hero */
+.hero .btn {
+  background: var(--accent);
+  color: var(--navy);
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.hero .btn:hover {
+  background: #ffe46b;
+  box-shadow: 0 0 12px rgba(241, 196, 15, 0.7);
+}
+
+/* Secondary button style */
+.hero .btn.secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+.hero .btn.secondary:hover {
+  background: var(--accent);
+  color: var(--navy);
+  box-shadow: 0 0 12px rgba(241, 196, 15, 0.7);
+}
+
+
+    /* Sections */
+    section{
+      padding:2rem; /* Increased padding for all sections */
+      border-radius:10px;
+      margin-top: 2rem; /* Increased margin between sections */
+    }
+    /* Adjust specific section margins if needed, but a general increase is a good start */
+    #about { margin-top: 2rem; } /* Keep this or adjust as needed */
+    #skills { margin-top: 2rem; }
+    #education { margin-top: 2rem; }
+    #contact { margin-top: 2rem; }
+
+    .section-alt{background:var(--muted); padding:2rem; border-radius:12px;}
+    h2{margin:0 0 0.75rem; color:var(--navy); font-size:1.2rem;}
+    p.lead{margin:0 0 1rem; color:#33475b;}
+
+    /* Skills */
+    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;}
+    .skill-card{background:var(--card); padding:12px; border-radius:10px; box-shadow:0 6px 18px rgba(2,6,23,0.04); transition:transform var(--transition), box-shadow var(--transition);}
+    .skill-card:hover{transform:translateY(-6px); box-shadow:0 12px 26px rgba(2,6,23,0.08);}
+    .tech-stack{margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; color:#0f1724; font-size:0.92rem;}
+
+
+    /* Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.project {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0; /* hidden initially for scroll animation */
+  transform: translateY(30px);
+}
+
+.project.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 26px rgba(241, 196, 15, 0.4);
+}
+
+.project img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  background-color: #00163d;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 5px;
+  position: relative;
+  overflow: hidden;
+}
+/* Shine effect */
+.project img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  transform: skewX(-25deg);
+}
+
+.project:hover img::after {
+  animation: shine 1s forwards;
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+/* Tech stack pills */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tech-stack span {
+  background: #eef2f7;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--navy);
+  transition: background 0.3s ease;
+}
+
+.tech-stack span:hover {
+  background: var(--accent);
+  color: var(--navy);
+}
+/* Carousel wrapper */
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Track containing slides */
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Each slide takes full width */
+.carousel .project {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Navigation arrows */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+.carousel-btn:hover { opacity: 1; }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* Dots navigation */
+.carousel-dots {
+  text-align: center;
+  margin-top: 12px;
+}
+.carousel-dot {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.carousel-dot.active {
+  background-color: var(--accent);
+}
+/* Footer text and links lighter */
+footer small {
+  color: #f1f3f7; /* light gray-white for readability */
+}
+
+footer small a {
+  color: #f1f3f7;
+  text-decoration: none;
+}
+
+footer small a:hover {
+  color: var(--accent);
+}
+
+    /* Contact / footer */
+    footer{padding:2rem 0; color:#213142; text-align:center;}
+    .contact-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:1rem;}
+
+    /* Back to top */
+    #backToTop{
+      position:fixed; right:18px; bottom:18px; background:var(--navy); color:#fff; border:0; padding:10px 12px; border-radius:12px; cursor:pointer; display:none;
+      box-shadow:0 10px 24px rgba(2,6,23,0.18);
+    }
+
+    /* small screen adjustments */
+    @media (max-width:820px){
+      .hero{grid-template-columns:1fr; text-align:center;}
+      nav ul{display:none; position:absolute; right:1rem; top:62px; background:var(--navy); padding:12px; border-radius:8px; flex-direction:column; min-width:180px;}
+      nav ul.open{display:flex;}
+      .hamburger{display:inline-block;}
+      main{padding:1rem;} /* Adjust main padding for smaller screens */
+      section{padding:1.5rem;} /* Adjust section padding for smaller screens */
+    }
+
+    @media (max-width:520px){
+      main{padding:0.5rem;}
+      .hero-img{width:120px;height:120px;}
+      .brand img{height:28px;width:28px;}
+    }
+
+    /* focus outlines for accessibility */
+    a:focus, button:focus { outline:3px solid rgba(241,196,15,0.25); outline-offset:2px; border-radius:6px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <div class="nav-container" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <img src="ibasan.jpeg" alt="Profile Picture" class="brand-img" />
+        <span>Leomar E. Ibasan</span>
+      </a>
+
+      <div class="nav-right">
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
+
+        <nav id="primary-nav">
+          <ul id="navList">
+            <li><a href="#home" data-target="home" class="nav-link">Home</a></li>
+            <li><a href="#about" data-target="about" class="nav-link">About</a></li>
+            <li><a href="#projects" data-target="projects" class="nav-link">Projects</a></li>
+            <li><a href="#skills" data-target="skills" class="nav-link">Skills</a></li>
+            <li><a href="#education" data-target="education" class="nav-link">Education</a></li>
+            <li><a href="#contact" data-target="contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <img src="ibasan.jpeg" alt="Leomar E. Ibasan — headshot" class="hero-img" />
+      <div>
+        <h1 id="hero-title">Leomar E. Ibasan</h1>
+        <p class="lead">4th-year BSCS (Data Science) student • Data Scientist & Software Engineer focused on building reliable systems, secure applications, and data-driven insights.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <a class="btn secondary" href="resume.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a class="btn" href="#projects">See Projects</a>
+          <a class="btn" href="https://github.com/lodagg" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+      <p>I am Leomar E. Ibasan, a 4th-year BSCS student at University of Perpetual Help System DALTA — Molino specializing in Data Science. I enjoy developing full-stack solutions, exploring machine learning, and hardening systems for security and scale.</p>
+
+      <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <h3 style="margin:0 0 6px 0;">What I do</h3>
+          <ul>
+            <li>Develop data-driven apps and pipelines (Python, SQL)</li>
+            <li>Design web apps and APIs (React, Node.js)</li>
+            <li>Explore cyber-security fundamentals & best practices</li>
+          </ul>
+        </div>
+
+        <div style="flex:1; min-width:220px;">
+          <h3 style="margin:0 0 6px 0;">Tools & Platforms</h3>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <span style="background:#fff; padding:6px 8px; border-radius:8px; box-shadow:0 6px 18px rgba(0, 0, 0, 0.04); color:black;">Python</span>
+            <span style="background:#fff; padding:6px 8px; border-radius:8px; box-shadow:0 6px 18px rgba(2,6,23,0.04); color:black;">Jupyter</span>
+            <span style="background:#fff; padding:6px 8px; border-radius:8px; box-shadow:0 6px 18px rgba(2,6,23,0.04); color:black;">React</span>
+            <span style="background:#fff; padding:6px 8px; border-radius:8px; box-shadow:0 6px 18px rgba(2,6,23,0.04); color:black;">MySQL</span>
+            <span style="background:#fff; padding:6px 8px; border-radius:8px; box-shadow:0 6px 18px rgba(2,6,23,0.04); color:black;">Git</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Carousel -->
+    <section id="projects"> <!-- Removed inline margin-top, now handled by general section rule -->
+      <h2>My Projects</h2>
+      <div class="carousel">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="carousel-track">
+          <!-- Project 1 -->
+          <article class="project" aria-labelledby="p1-title">
+            <img src="logo.jpeg" alt="Blockchain Verification System screenshot" />
+            <h3 id="p1-title" style="margin:4px 0 6px;">Blockchain Verification System</h3>
+            <p class="project-desc-black">
+        Built a simplified blockchain-based identity verification prototype to demonstrate tamper-evident record storage and verification flow.</p>
+            <p style="font-size:0.9rem; color:#000000;"><strong>Role:</strong> Quality Assurance • <strong>Outcome:</strong> prototype + unit tests</p>
+            <div style="margin-top:8px;">
+              <div class="tech-stack"><span>Python</span><span>Flask</span><span>Hardhat</span><span>MetaMask</span></div>
+            </div>
+            <div class="meta" style="margin-top:12px;">
+              <div>
+<span style="background:#fff; padding:6px 12px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.04); color:black;">Live demo (soon)</span>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project" aria-labelledby="p2-title">
+            <img src="portfolio-screenshot.png" alt="Personal portfolio screenshot" />
+            <h3 id="p2-title" style="margin:4px 0 6px;">Personal Portfolio Website</h3>
+            <p class="project-desc-black">
+        Responsive portfolio built from scratch with focus on accessibility and mobile-first design. This site (and its assets) demonstrate UI polish and deployment practices.</p>
+
+            <p style="font-size:0.9rem; color:#566272;"><strong>Role:</strong> Designer & Developer • <strong>Outcome:</strong> deployed portfolio</p>
+            <div style="margin-top:8px;">
+              <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Netlify</span></div>
+            </div>
+            <div class="meta" style="margin-top:12px;">
+              <a class="btn" href="https://github.com/lodagg/portfolio" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn secondary" href="#" aria-disabled="true">Live</a>
+            </div>
+          </article>
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
+      </div>
+      <div class="carousel-dots"></div>
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <p class="lead">A concise view of technical skills and tools.</p>
+
+      <div class="skills-grid" style="margin-top:12px;">
+        <div class="skill-card">
+          <strong>Programming Languages</strong>
+          <div class="tech-stack" style="margin-top:8px;">Python • Java • C++ • JavaScript</div>
+        </div>
+        <div class="skill-card">
+          <strong>Web & Backend</strong>
+          <div class="tech-stack" style="margin-top:8px;">HTML/CSS • React • Node.js • Express</div>
+        </div>
+        <div class="skill-card">
+          <strong>Data & ML</strong>
+          <div class="tech-stack" style="margin-top:8px;">Pandas • NumPy • scikit-learn • Jupyter</div>
+        </div>
+        <div class="skill-card">
+          <strong>Tools & Platforms</strong>
+          <div class="tech-stack" style="margin-top:8px;">Git • VS Code • Linux • MySQL • Docker</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education (alt bg) -->
+    <section id="education" class="section-alt">
+      <h2>Education</h2>
+      <p><strong style="color: #f1c40f">Tertiary</strong><br/>University of Perpetual Help System DALTA - Molino — B.S. Computer Science (Data Science specialization)</p>
+      <p><strong style="color: #f1c40f">Secondary</strong><br/>Bacoor Senior High School — G11 / AMA University — G12</p>
+      <p><strong style="color: #f1c40f">Primary</strong><br/>Molino Elementary School</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="lead">Feel free to reach out — resume is available for download.</p>
+
+      <div class="contact-cards">
+  <div>
+    <strong><i class="fas fa-envelope"></i> Email</strong>
+    <p><a href="mailto:leomar.ibasan123@gmail.com">leomar.ibasan123@gmail.com</a></p>
+  </div>
+
+  <div>
+    <strong><i class="fas fa-phone"></i> Phone</strong>
+    <p>+63 995 432 9481</p>
+  </div>
+
+  <div>
+    <strong><i class="fas fa-user-circle"></i> Profiles</strong>
+    <p style="display:flex; gap:8px; flex-wrap:wrap;">
+      <a href="https://github.com/lodagg" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://linkedin.com/in/leomar.ibasan" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </p>
+  </div>
+</div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width:var(--container); margin:0 auto; padding:1rem;">
+      <small>© <span id="year"></span> Leomar E. Ibasan — Built with care • <a href="resume.pdf" target="_blank" rel="noopener">View Resume (PDF)</a>
+</small>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top">↑ Top</button>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  /* ===== Navigation, Hamburger, Back-to-Top, Scroll Spy ===== */
+  const hamburger = document.getElementById('hamburger');
+  const navList = document.getElementById('navList');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const back = document.getElementById('backToTop');
+
+  // hamburger toggle
+  hamburger.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // smooth scroll + close menu
+  navLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default anchor behavior
+      const targetId = a.getAttribute('href').substring(1); // Get the ID from href
+      const targetSection = document.getElementById(targetId);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      navList.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // back-to-top button
+  window.addEventListener('scroll', () => {
+    back.style.display = window.scrollY > 500 ? 'block' : 'none';
+  });
+  back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // scroll spy
+  const sections = document.querySelectorAll('main section[id]');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = document.querySelector(`a[data-target="${entry.target.id}"]`);
+      if (link) { // Check if link exists
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+          link.classList.add('active');
+        } else {
+          // Optional: Remove active class if section is no longer intersecting
+          // This can prevent multiple active links if sections are very close
+          link.classList.remove('active');
+        }
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px' });
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ===== Scroll Animation for Projects ===== */
+  const projects = document.querySelectorAll(".project");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  }, { threshold: 0.15 });
+  projects.forEach(project => observer.observe(project));
+
+  /* ===== Carousel + Swipe + 3D Tilt ===== */
+  const track = document.querySelector('.carousel-track');
+  if (track) {
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-btn.next');
+    const prevButton = document.querySelector('.carousel-btn.prev');
+    const dotsNav = document.querySelector('.carousel-dots');
+
+    let currentSlide = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    // create dots
+    slides.forEach((_, index) => {
+      const dot = document.createElement('span');
+      dot.classList.add('carousel-dot');
+      if (index === 0) dot.classList.add('active');
+      dotsNav.appendChild(dot);
+    });
+    const dots = Array.from(dotsNav.children);
+
+    function updateCarousel(index) {
+      track.style.transition = `transform 0.6s ease-in-out`;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      updateCarousel((currentSlide + 1) % slides.length);
+    }
+    function prevSlide() {
+      updateCarousel((currentSlide - 1 + slides.length) % slides.length);
+    }
+
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+
+    dots.forEach((dot, index) => dot.addEventListener('click', () => updateCarousel(index)));
+
+    let autoSlide = setInterval(nextSlide, 5000);
+
+    track.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    track.addEventListener('mouseleave', () => autoSlide = setInterval(nextSlide, 5000));
+
+    // touch swipe
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      track.style.transition = 'none';
+      clearInterval(autoSlide);
+    });
+
+    track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      currentX = e.touches[0].clientX;
+      let diff = currentX - startX;
+      track.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
+
+      // tilt effect
+      const activeCard = slides[currentSlide];
+      const tilt = (diff / window.innerWidth) * 20;
+      activeCard.style.transform = `rotateY(${tilt}deg) scale(1.02)`;
+    });
+
+    track.addEventListener('touchend', () => {
+      isDragging = false;
+      let diff = currentX - startX;
+      slides[currentSlide].style.transform = '';
+
+      if (diff > 50) prevSlide();
+      else if (diff < -50) nextSlide();
+      else updateCarousel(currentSlide);
+
+      autoSlide = setInterval(nextSlide, 5000);
+    });
+
+    // hover tilt (desktop)
+    slides.forEach(slide => {
+      slide.addEventListener('mousemove', (e) => {
+        const rect = slide.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 8;
+        const rotateY = ((x - centerX) / centerX) * -8;
+        slide.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        slide.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 20px rgba(0,0,0,0.15)`;
+      });
+      slide.addEventListener('mouseleave', () => {
+        slide.style.transform = '';
+        slide.style.boxShadow = '';
+      });
+    });
+  }
+});
+</script>
+</body>
+</html>
